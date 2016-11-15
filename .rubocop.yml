@@ -1,0 +1,7 @@
+AllCops:
+  Includes:
+    - config.ru
+Documentation:
+  Enabled: false
+Metrics/LineLength:
+  Max: 90

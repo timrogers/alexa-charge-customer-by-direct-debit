@@ -1,0 +1,6 @@
+ChargeCustomer charge {GivenName} {Amount} pounds
+ChargeCustomer take {Amount} pounds from {GivenName}
+ChargeCustomer take a payment of {Amount} pounds from {GivenName}
+ChargeCustomer collect {Amount} pounds from {GivenName}
+ChargeCustomer set up a Direct Debit from {GivenName} for {Amount} pounds
+ChargeCustomer set up a Direct Debit for {Amount} pounds from {GivenName}

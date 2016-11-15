@@ -1,0 +1,17 @@
+{
+  "intents": [
+    {
+      "intent": "ChargeCustomer",
+      "slots": [
+        {
+          "name": "GivenName",
+          "type": "AMAZON.NUMBER"
+        },
+        {
+          "name": "Amount",
+          "type": "AMAZON.NUMBER"
+        }
+      ]
+    }
+  ]
+}
