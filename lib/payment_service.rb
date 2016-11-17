@@ -27,9 +27,9 @@ class PaymentService
   attr_reader :access_token
 
   def mandate_for_customer(customer)
-    client.mandates
-          .list(params: { customer: customer.id, status: ELIGIBLE_MANDATE_STATUSES })
-          .records.first
+    client.mandates.
+      list(params: { customer: customer.id, status: ELIGIBLE_MANDATE_STATUSES }).
+      records.first
   end
 
   def client

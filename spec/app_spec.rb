@@ -24,7 +24,7 @@ describe 'Alexa Charge Customer application' do
 
         expect(last_response.body).to include('Konnaire')
         expect(last_response.body).to include('5 pounds')
-        expect(last_response.body).to include('2016-11-22')
+        expect(last_response.body).to include('in a few days')
       end
     end
 
@@ -39,7 +39,7 @@ describe 'Alexa Charge Customer application' do
 
           expect(last_response.body).to include('Konnaire')
           expect(last_response.body).to include('5 pounds')
-          expect(last_response.body).to include('2016-11-22')
+          expect(last_response.body).to include('in a few days')
         end
       end
 

@@ -12,8 +12,8 @@ class ChargeCustomerHandler < AlexaSkillsRuby::Handler
     customer = customers.find_by_given_name(given_name)
     return customer_not_found_message if customer.nil?
 
-    payment = payments.charge(customer: customer, amount_in_pence: amount_in_pence)
-    charged_successfully_message(payment.charge_date)
+    payments.charge(customer: customer, amount_in_pence: amount_in_pence)
+    charged_successfully_message
   rescue CustomerLookupService::TooManyCustomersError
     too_many_customers_message
   rescue CustomerLookupService::MoreThanOneMatchingCustomerError
@@ -46,9 +46,9 @@ class ChargeCustomerHandler < AlexaSkillsRuby::Handler
     session.user.access_token || Prius.get(:gocardless_access_token)
   end
 
-  def charged_successfully_message(charge_date)
+  def charged_successfully_message
     response.set_output_speech_text("We've successfully charged #{given_name} #{amount}" \
-                                    " pounds, and they'll be charged on #{charge_date}.")
+                                    " pounds, and they'll be charged in a few days.")
   end
 
   def too_many_customers_message
