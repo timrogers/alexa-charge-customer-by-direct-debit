@@ -15,4 +15,5 @@ group :test, :development do
   gem 'vcr'
   gem 'webmock'
   gem 'rubocop', require: false
+  gem 'timecop'
 end

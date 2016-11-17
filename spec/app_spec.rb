@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require File.expand_path '../spec_helper.rb', __FILE__
+require 'timecop'
 
 describe 'Alexa Charge Customer application' do
   let(:request_path) { File.expand_path('../fixtures/request.json', __FILE__) }
@@ -18,13 +19,15 @@ describe 'Alexa Charge Customer application' do
   end
 
   context 'with a valid name' do
+    around { |example| Timecop.freeze(Date.new(2016, 11, 17)) { example.run } }
+
     it 'returns a success message with the name, amount and charge date' do
       VCR.use_cassette('gocardless/charge_customer_valid') do
         post_service
 
         expect(last_response.body).to include('Konnaire')
         expect(last_response.body).to include('5 pounds')
-        expect(last_response.body).to include('in a few days')
+        expect(last_response.body).to include('in 5 days')
       end
     end
 
@@ -39,7 +42,7 @@ describe 'Alexa Charge Customer application' do
 
           expect(last_response.body).to include('Konnaire')
           expect(last_response.body).to include('5 pounds')
-          expect(last_response.body).to include('in a few days')
+          expect(last_response.body).to include('in 5 days')
         end
       end
 

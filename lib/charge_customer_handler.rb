@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require 'alexa_skills_ruby'
+require 'date'
 require_relative 'customer_lookup_service'
 require_relative 'payment_service'
 
@@ -12,8 +13,8 @@ class ChargeCustomerHandler < AlexaSkillsRuby::Handler
     customer = customers.find_by_given_name(given_name)
     return customer_not_found_message if customer.nil?
 
-    payments.charge(customer: customer, amount_in_pence: amount_in_pence)
-    charged_successfully_message
+    payment = payments.charge(customer: customer, amount_in_pence: amount_in_pence)
+    charged_successfully_message(payment.charge_date)
   rescue CustomerLookupService::TooManyCustomersError
     too_many_customers_message
   rescue CustomerLookupService::MoreThanOneMatchingCustomerError
@@ -46,9 +47,11 @@ class ChargeCustomerHandler < AlexaSkillsRuby::Handler
     session.user.access_token || Prius.get(:gocardless_access_token)
   end
 
-  def charged_successfully_message
+  def charged_successfully_message(charge_date)
+    delay = (Date.parse(charge_date) - Date.today).to_i
+
     response.set_output_speech_text("We've successfully charged #{given_name} #{amount}" \
-                                    " pounds, and they'll be charged in a few days.")
+                                    " pounds, and they'll be charged in #{delay} days.")
   end
 
   def too_many_customers_message
