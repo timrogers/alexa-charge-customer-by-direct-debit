@@ -1,11 +1,9 @@
-# "Charge Customer by Direct Debit" by Direct Debit
+# "Charge Customer by Direct Debit" for Alexa
 
 Collect money your friends owe you with your voice using the [GoCardless API](https://developer.gocardless.com).
 
 ## TODO
 
-* Update `intent_schema.json` with the correct type for a UK first name
-* Get the specs running with an internet connection
 * Add support for OAuth (requires configuration in Alexa, and then fetching the access token from the request)
 
 ## Preparing your local environment
@@ -19,7 +17,6 @@ Collect money your friends owe you with your voice using the [GoCardless API](ht
 You can create your Alexa skill on the Amazon site [here](https://developer.amazon.com/edw/home.html#/skill/create/)).
 
 For the intent schema and sample utterances you'll need to provide, see `intent_schema.json` and `sample_utterances.txt`.
-
 
 ## Deploying
 

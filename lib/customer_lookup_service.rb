@@ -14,12 +14,12 @@ class CustomerLookupService
 
   def find_by_given_name(given_name)
     Timeout.timeout(TIMEOUT) do
-      matching_customers = customers.find_all do |customer|
-        customer.given_name.casecmp(given_name)
+      matching_customers = customers.select do |customer|
+        customer.given_name.casecmp(given_name.downcase).zero?
       end
 
       return if matching_customers.count.zero?
-      raise TooManyCustomersError if matching_customers.count > 1
+      raise MoreThanOneMatchingCustomerError if matching_customers.count > 1
 
       matching_customers.first
     end

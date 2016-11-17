@@ -48,7 +48,7 @@ class ChargeCustomerHandler < AlexaSkillsRuby::Handler
 
   def charged_successfully_message(charge_date)
     response.set_output_speech_text("We've successfully charged #{given_name} #{amount}" \
-                                    "pounds, and they'll be charged on #{charge_date}.")
+                                    " pounds, and they'll be charged on #{charge_date}.")
   end
 
   def too_many_customers_message

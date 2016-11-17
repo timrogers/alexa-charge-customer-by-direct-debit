@@ -1,0 +1,93 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.gocardless.com/customers?active_mandates=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - "<user agent>"
+      Gocardless-Version:
+      - '2015-07-06'
+      Content-Type:
+      - application/json
+      Authorization:
+      - "<access_token>"
+      Accept-Encoding:
+      - "<encoding>"
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 17 Nov 2016 11:07:52 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d4816f5ee8ad5e0ab34677589d99eed2a1479380872; expires=Fri, 17-Nov-17
+        11:07:52 GMT; path=/; domain=.gocardless.com; HttpOnly
+      Pragma:
+      - no-cache
+      Cache-Control:
+      - no-store
+      Etag:
+      - W/"d293450231f9267521c6739419c798b7"
+      X-Request-Id:
+      - 1ae5a12b-3793-4589-a8be-4a5ee6f77e1a
+      Vary:
+      - Origin
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
+      Ratelimit-Limit:
+      - '1000'
+      Ratelimit-Remaining:
+      - '995'
+      Ratelimit-Reset:
+      - Thu, 17 Nov 2016 11:08:00 GMT
+      Server:
+      - cloudflare-nginx
+      Cf-Ray:
+      - 3032b8b76d0f35a8-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"customers":[{"id":"CU0003NWSC7SR3","created_at":"2016-11-17T10:59:41.800Z","email":"tim+emma@gocardless.com","given_name":"Emma","family_name":"Rogers","company_name":null,"address_line1":"Flat
+        006, Empire Heights","address_line2":"45 New Cross Road","address_line3":null,"city":"London","region":null,"postal_code":"SE14
+        5FA","country_code":"GB","language":"en","swedish_identity_number":null,"metadata":{}},{"id":"0FZSZRT3YW","created_at":"2013-06-20T12:33:38.734Z","email":"ricky.shafier@gmail.com","given_name":"Ricky","family_name":"Shafier","company_name":null,"address_line1":"18
+        Little Potters","address_line2":"Bushey Heath","address_line3":null,"city":"Herts","region":null,"postal_code":"WD23
+        4QT","country_code":"GB","language":"en","swedish_identity_number":null,"metadata":{}},{"id":"0FQ4P1XE7H","created_at":"2013-07-09T09:55:57.686Z","email":"alina@gocardless.com","given_name":"Alina","family_name":"Solovjova","company_name":null,"address_line1":"The
+        Conkers","address_line2":"High Street","address_line3":null,"city":"South
+        Moreton","region":null,"postal_code":"OX11 9AG","country_code":"GB","language":"en","swedish_identity_number":null,"metadata":{}},{"id":"0C3JNWXH5J","created_at":"2013-04-01T17:04:49.022Z","email":"kitbrennan90+gocardless@gmail.com","given_name":"Kit","family_name":"Brennan","company_name":"Widgets
+        plc","address_line1":"Flat 4, Medina Mansions","address_line2":"102 Great
+        Titchfield Street","address_line3":null,"city":"London","region":null,"postal_code":"W1W
+        6SL","country_code":"GB","language":"en","swedish_identity_number":null,"metadata":{"custom_reference":"1000"}},{"id":"0BVTSPEB9G","created_at":"2012-11-20T11:34:52.000Z","email":"riccardo@gocardless.com","given_name":"Riccardo","family_name":"Cambiassi","company_name":null,"address_line1":"96a
+        Anerley Road","address_line2":"","address_line3":null,"city":"London","region":null,"postal_code":"SE19
+        2AN","country_code":"GB","language":"en","swedish_identity_number":null,"metadata":{}},{"id":"0BVTNW5GA8","created_at":"2012-11-05T12:34:15.000Z","email":"missmayaross+gocardless@gmail.com","given_name":"Maya","family_name":"Ross","company_name":null,"address_line1":"4
+        Nutley Terrace","address_line2":"","address_line3":null,"city":"London","region":null,"postal_code":"NW3
+        5BX","country_code":"GB","language":"en","swedish_identity_number":null,"metadata":{}},{"id":"0BVTDMJFS5","created_at":"2012-05-11T21:11:27.000Z","email":"me@konnai.re","given_name":"Konnaire","family_name":"Scannell","company_name":null,"address_line1":"2
+        Halfway Court","address_line2":"Halfway Court","address_line3":null,"city":"Purfleet","region":null,"postal_code":"RM19
+        1GJ","country_code":"GB","language":"en","swedish_identity_number":null,"metadata":{}},{"id":"0BVT9BDD5Z","created_at":"2012-11-06T21:11:50.000Z","email":"julia@rm14.co.uk","given_name":"Julia","family_name":"Rogers","company_name":null,"address_line1":"11
+        Deyncourt Gardens","address_line2":"","address_line3":null,"city":"Upminster","region":null,"postal_code":"RM14
+        1DF","country_code":"GB","language":"en","swedish_identity_number":null,"metadata":{}},{"id":"0BVT8E1K0W","created_at":"2011-10-29T09:43:29.000Z","email":"hiroki.takeuchi@gmail.com","given_name":"Hiroki","family_name":"Takeuchi","company_name":null,"address_line1":"Unknown","address_line2":null,"address_line3":null,"city":"-","region":null,"postal_code":"AA11
+        1AA","country_code":"GB","language":"en","swedish_identity_number":null,"metadata":{}},{"id":"0BVT82J09E","created_at":"2012-07-30T10:08:43.000Z","email":"nabeelqureshi67@gmail.com","given_name":"Nabeel","family_name":"Qureshi","company_name":null,"address_line1":"Flat
+        4 153 regents park road","address_line2":"","address_line3":null,"city":"London","region":null,"postal_code":"NW1
+        8BB","country_code":"GB","language":"en","swedish_identity_number":null,"metadata":{"custom_reference":"GANGTSA"}},{"id":"0BVT6BY7V1","created_at":"2012-12-02T22:49:23.000Z","email":"emmarogers992@hotmail.com","given_name":"Emma","family_name":"Rogers","company_name":null,"address_line1":"11
+        Deyncourt Gardens","address_line2":"","address_line3":null,"city":"Upminster,
+        Essex","region":null,"postal_code":"RM14 1DF","country_code":"GB","language":"en","swedish_identity_number":null,"metadata":{}},{"id":"0BVT1YC7C4","created_at":"2012-11-22T16:50:03.000Z","email":"alex.mcausland@gmail.com","given_name":"Alex","family_name":"Mac","company_name":null,"address_line1":"Earlham
+        House","address_line2":"Courtlands Lane","address_line3":null,"city":"Exmouth","region":null,"postal_code":"EX8
+        3NU","country_code":"GB","language":"en","swedish_identity_number":null,"metadata":{}}],"meta":{"cursors":{"before":null,"after":null},"limit":50}}'
+    http_version: 
+  recorded_at: Thu, 17 Nov 2016 11:07:52 GMT
+recorded_with: VCR 3.0.3

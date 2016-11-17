@@ -24,19 +24,19 @@ describe 'Alexa Charge Customer application' do
 
         expect(last_response.body).to include('Konnaire')
         expect(last_response.body).to include('5 pounds')
-        expect(last_response.body).to include('2016-11-25')
+        expect(last_response.body).to include('2016-11-22')
       end
     end
   end
 
   context 'with a name with multiple matches' do
-    before { request_data['request']['intent']['slots']['GivenName']['value'] = 'Tim' }
+    before { request_data['request']['intent']['slots']['GivenName']['value'] = 'Emma' }
 
     it 'returns an error with the provided name' do
       VCR.use_cassette('gocardless/charge_customer_multiple_matches') do
         post_service
 
-        expect(last_response.body).to include('Tim')
+        expect(last_response.body).to include('Emma')
         expect(last_response.body).to include('more than one customer')
       end
     end
@@ -49,8 +49,22 @@ describe 'Alexa Charge Customer application' do
       VCR.use_cassette('gocardless/charge_customer_invalid') do
         post_service
 
-        expect(last_response.body).to include('Bob')
-        expect(last_response.body).to include('invalid')
+        expect(last_response.body).to include("we couldn't find a customer called Bob")
+      end
+    end
+  end
+
+  context 'when there are too many customers, triggering a timeout' do
+    before do
+      allow_any_instance_of(CustomerLookupService).to receive(:find_by_given_name)
+        .with('Konnaire').and_raise(CustomerLookupService::TooManyCustomersError)
+    end
+
+    it 'returns a message saying there are too many customers' do
+      VCR.use_cassette('gocardless/charge_customer_too_many_customers') do
+        post_service
+
+        expect(last_response.body).to include('too many Go Cardless customers')
       end
     end
   end
