@@ -18,8 +18,8 @@ class ChargeCustomerHandler < AlexaSkillsRuby::Handler
     too_many_customers_message
   rescue CustomerLookupService::MoreThanOneMatchingCustomerError
     more_than_one_matching_customer_message
-  rescue
-    generic_error
+  rescue => exception
+    generic_error(exception)
   end
 
   def given_name
@@ -43,7 +43,7 @@ class ChargeCustomerHandler < AlexaSkillsRuby::Handler
   end
 
   def access_token
-    session.attributes['access_token'] || Prius.get(:gocardless_access_token)
+    session.user.access_token || Prius.get(:gocardless_access_token)
   end
 
   def charged_successfully_message(charge_date)
@@ -66,7 +66,8 @@ class ChargeCustomerHandler < AlexaSkillsRuby::Handler
                                     "#{given_name} - check your Dashboard and try again.")
   end
 
-  def generic_error
+  def generic_error(exception)
+    logger.info "An unknown error occurred: #{exception}"
     response.set_output_speech_text('Sorry - something went wrong when we were charging' \
                                     " #{given_name}. Check your Dashboard to make sure " \
                                     "they weren't charged, then try again.")

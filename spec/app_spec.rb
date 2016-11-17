@@ -27,6 +27,33 @@ describe 'Alexa Charge Customer application' do
         expect(last_response.body).to include('2016-11-22')
       end
     end
+
+    context 'with an OAuth access token in the session' do
+      let(:request_path) do
+        File.expand_path('../fixtures/request_with_access_token.json', __FILE__)
+      end
+
+      it 'returns a success message with the name, amount and charge date' do
+        VCR.use_cassette('gocardless/charge_customer_valid') do
+          post_service
+
+          expect(last_response.body).to include('Konnaire')
+          expect(last_response.body).to include('5 pounds')
+          expect(last_response.body).to include('2016-11-22')
+        end
+      end
+
+      it 'passes the access token to the services' do
+        VCR.use_cassette('gocardless/charge_customer_valid') do
+          expect(CustomerLookupService).to receive(:new).
+            with(access_token: 'dummy_oauth_access_token').and_call_original
+          expect(PaymentService).to receive(:new).
+            with(access_token: 'dummy_oauth_access_token').and_call_original
+
+          post_service
+        end
+      end
+    end
   end
 
   context 'with a name with multiple matches' do
@@ -56,8 +83,8 @@ describe 'Alexa Charge Customer application' do
 
   context 'when there are too many customers, triggering a timeout' do
     before do
-      allow_any_instance_of(CustomerLookupService).to receive(:find_by_given_name)
-        .with('Konnaire').and_raise(CustomerLookupService::TooManyCustomersError)
+      allow_any_instance_of(CustomerLookupService).to receive(:find_by_given_name).
+        with('Konnaire').and_raise(CustomerLookupService::TooManyCustomersError)
     end
 
     it 'returns a message saying there are too many customers' do

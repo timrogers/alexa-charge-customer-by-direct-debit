@@ -1,7 +1,9 @@
 AllCops:
-  Includes:
+  Include:
     - config.ru
 Documentation:
   Enabled: false
 Metrics/LineLength:
   Max: 90
+Style/DotPosition:
+  EnforcedStyle: trailing
